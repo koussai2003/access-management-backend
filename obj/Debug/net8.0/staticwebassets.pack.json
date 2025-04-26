@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\471168659_122171630612257919_4502660504235279218_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\471168659_122171630612257919_4502660504235279218_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\Argania.png",
+      "PackagePath": "staticwebassets\\uploads\\Argania.png"
+    },
+    {
+      "Id": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\WIN_20241203_13_45_51_Pro.jpg",
+      "PackagePath": "staticwebassets\\uploads\\WIN_20241203_13_45_51_Pro.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\logo.png",
+      "PackagePath": "staticwebassets\\uploads\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\téléchargement.png",
+      "PackagePath": "staticwebassets\\uploads\\téléchargement.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AccessManagementAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AccessManagementAPI.props",
+      "PackagePath": "build\\AccessManagementAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AccessManagementAPI.props",
+      "PackagePath": "buildMultiTargeting\\AccessManagementAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AccessManagementAPI.props",
+      "PackagePath": "buildTransitive\\AccessManagementAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
