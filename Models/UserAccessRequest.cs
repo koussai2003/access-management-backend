@@ -24,7 +24,9 @@ public class UserAccessRequest
     public string? Validateur2 { get; set; }
     public string? Validateur3 { get; set; }
     public string? ValidatorComment { get; set; }
-
+    public string? ActualUserEmail { get; set; }
+    public bool IsOnBehalfRequest { get; set; } = false;
+    public string? RequestedByEmail { get; set; }
     public bool ValidatedBy1 { get; set; } = false;
     public bool ValidatedBy2 { get; set; } = false;
     public bool ValidatedBy3 { get; set; } = false;

@@ -21,10 +21,35 @@ namespace AccessManagementAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitRequest([FromBody] UserAccessRequest request)
     {
+        if (request.IsOnBehalfRequest)
+    {
+        if (string.IsNullOrEmpty(request.ActualUserEmail))
+        {
+            return BadRequest("Actual user email is required for on-behalf requests");
+        }
+
+        
+        var existingUser = await _context.Users.AnyAsync(u => u.Email == request.ActualUserEmail);
+        if (existingUser)
+        {
+            return BadRequest("Cannot submit request for an existing user - they should submit their own request");
+        }
+    }
         request.State = "Not viewed";
         request.SubmittedAt = DateTime.Now;
         request.LockedByAdmin = null;
         request.ValidatorComment = null;
+        request.RequestedByEmail = User.Identity?.Name;
+
+        if (request.IsOnBehalfRequest)
+    {
+        request.UserEmail = request.ActualUserEmail;
+        request.Societe = "To be determined";
+        request.Fonction = "To be determined";
+        request.Direction = "To be determined";
+    }
+    else
+    {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.UserEmail);
         if (user != null)
         {
@@ -32,6 +57,8 @@ namespace AccessManagementAPI.Controllers
             request.Fonction = user.Fonction;
             request.Direction = user.Direction;
         }
+    }
+    
         _context.UserAccessRequests.Add(request);
         await _context.SaveChangesAsync();
         if (request.UserEmail == request.Validateur1)
@@ -71,6 +98,12 @@ namespace AccessManagementAPI.Controllers
             .ToListAsync();
 
         return Ok(history);
+    }
+    [HttpGet("exists/{email}")]
+    public async Task<IActionResult> CheckUserExists(string email)
+    {
+        var exists = await _context.Users.AnyAsync(u => u.Email == email);
+        return Ok(exists);
     }
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateRequest(int id, [FromBody] UserAccessRequest updated)

@@ -15,6 +15,7 @@ namespace AccessManagementAPI.Data
         public DbSet<RequestValidation> RequestValidations { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<EmailNotification> EmailNotifications { get; set; }
+        public DbSet<UserColumn> UserColumns { get; set; }
 
 
     }

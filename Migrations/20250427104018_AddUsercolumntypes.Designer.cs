@@ -4,6 +4,7 @@ using AccessManagementAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccessManagementAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250427104018_AddUsercolumntypes")]
+    partial class AddUsercolumntypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,9 +301,6 @@ namespace AccessManagementAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ActualUserEmail")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("AdminComment")
                         .HasColumnType("nvarchar(max)");
 
@@ -316,9 +316,6 @@ namespace AccessManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsOnBehalfRequest")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("LockedAt")
                         .HasColumnType("datetime2");
 
@@ -327,9 +324,6 @@ namespace AccessManagementAPI.Migrations
 
                     b.Property<string>("ModulesJson")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RequestedByEmail")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Societe")

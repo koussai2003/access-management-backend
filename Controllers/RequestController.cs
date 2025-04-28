@@ -135,21 +135,9 @@ namespace AccessManagementAPI.Controllers
                     request.ApplicationName, 
                     request.State,
                     validatorName);
-                await _emailService.SendValidationEmail(
-                request.UserEmail,
-                dto.ValidatorEmail,
-                request.ApplicationName,
-                request.State,
-                validatorName,
-                request.Id);
-                await NotificationsController.CreateNotification(_context, 
-                    request.UserEmail,
-                    "Validation Update",
-                    $"Your request for {request.ApplicationName} has been validated by the first validator",
-                    "status",
-                    id);
+                
             }
-            else if (request.Validateur3 == dto.ValidatorEmail && request.ValidatedBy1 && request.ValidatedBy2 && !request.ValidatedBy3)
+            else if (request.Validateur2 == dto.ValidatorEmail && request.ValidatedBy1 && !request.ValidatedBy2)
             {
                 request.ValidatedBy2 = true;
                 request.State = string.IsNullOrWhiteSpace(request.Validateur3) ? "Pending Admin" : "Pending Validateur 3";
@@ -167,19 +155,6 @@ namespace AccessManagementAPI.Controllers
                                 request.ApplicationName, 
                                 request.State,
                                 validatorName);
-                await _emailService.SendValidationEmail(
-                request.UserEmail,
-                dto.ValidatorEmail,
-                request.ApplicationName,
-                request.State,
-                validatorName,
-                request.Id);
-                await NotificationsController.CreateNotification(_context, 
-                    request.UserEmail,
-                    "Validation Update",
-                    $"Your request for {request.ApplicationName} has been validated by the second validator",
-                    "status",
-                    id);
             }
             else if (request.Validateur3 == dto.ValidatorEmail && request.ValidatedBy1 && request.ValidatedBy2 && !request.ValidatedBy3)
             {
@@ -199,24 +174,32 @@ namespace AccessManagementAPI.Controllers
                                     request.ApplicationName, 
                                     request.State,
                                     validatorName);
-                await _emailService.SendValidationEmail(
+            }
+            else
+            {
+                return BadRequest(new { message = "Invalid validator or already validated",details = new {
+                isFirstValidator = request.Validateur1 == dto.ValidatorEmail,
+                isSecondValidator = request.Validateur2 == dto.ValidatorEmail,
+                isThirdValidator = request.Validateur3 == dto.ValidatorEmail,
+                firstValidated = request.ValidatedBy1,
+                secondValidated = request.ValidatedBy2,
+                thirdValidated = request.ValidatedBy3
+            } });
+            }
+            await _emailService.SendValidationEmail(
                 request.UserEmail,
                 dto.ValidatorEmail,
                 request.ApplicationName,
                 request.State,
                 validatorName,
                 request.Id);
-                await NotificationsController.CreateNotification(_context, 
-                    request.UserEmail,
-                    "Validation Update",
-                    $"Your request for {request.ApplicationName} has been validated by all validators",
-                    "status",
-                    id);
-            }
-            else
-            {
-                return BadRequest(new { message = "Invalid validator or already validated" });
-            }
+            await NotificationsController.CreateNotification(_context, 
+                request.UserEmail,
+                "Validation Update",
+                $"Your request for {request.ApplicationName} has been validated",
+                "status",
+                id);
+               
             await _emailService.SendAndRecordEmail(
             request.UserEmail,
             dto.ValidatorEmail,
@@ -226,7 +209,7 @@ namespace AccessManagementAPI.Controllers
             emailType);
             await _context.SaveChangesAsync();
             
-            return Ok(new { message = "Validation successful", nextState = request.State });
+            return Ok(new { message = "Validation successful", nextState = request.State,validationStep = emailType });
         }
 
         [HttpPost("accept/{id}")]

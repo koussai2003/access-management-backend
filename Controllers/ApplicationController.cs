@@ -38,9 +38,9 @@ public async Task<IActionResult> UpdateApplication(int id, [FromForm] IFormFile?
     var app = await _context.Applications.FindAsync(id);
     if (app == null) return NotFound(new { message = "Application not found" });
 
-    app.Name = name; // ✅ Corrected from "App.Name" to "name"
+    app.Name = name; 
 
-    if (logo != null && logo.Length > 0)  // ✅ Ensure a new file is uploaded
+    if (logo != null && logo.Length > 0)  
     {
         var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
         if (!Directory.Exists(uploadsFolder))
@@ -52,7 +52,7 @@ public async Task<IActionResult> UpdateApplication(int id, [FromForm] IFormFile?
             await logo.CopyToAsync(stream);
         }
 
-        app.LogoUrl = $"/uploads/{logo.FileName}"; // ✅ Update logo URL in database
+        app.LogoUrl = $"/uploads/{logo.FileName}"; 
     }
 
     await _context.SaveChangesAsync();
