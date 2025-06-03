@@ -51,7 +51,25 @@ namespace AccessManagementAPI.Services
                 requestId,
                 "validation");
         }
-
+        public async Task SendAcceptedEmail(
+            string recipientEmail,
+            string senderEmail,
+            string applicationName,
+            string adminName,
+            int requestId,
+            DateTime? accessStartDate = null)
+        {
+            string subject = "Request Accepted";
+            string body = _templateService.GetAcceptedEmail(applicationName, adminName, "Your request is now being processed by our team", accessStartDate);
+    
+            await SendAndRecordEmail(
+                recipientEmail,
+                senderEmail,
+                subject,
+                body,
+                requestId,
+                "acceptance");
+        }
         public async Task SendRejectionEmail(
             string recipientEmail,
             string senderEmail,

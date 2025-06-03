@@ -46,21 +46,55 @@ namespace AccessManagementAPI.Services
             </div>";
         }
 
-        public string GetApprovalEmail(string applicationName, string approverName)
+        public string GetAcceptedEmail(string applicationName, string adminName, string nextSteps, DateTime? accessStartDate = null)
         {
+            string accessDateInfo = accessStartDate.HasValue 
+                ? $"<p>Your access will be active starting from <strong>{accessStartDate.Value.ToString("MMMM dd, yyyy")}</strong>.</p>"
+                : "<p>Your access should now be active.</p>";
+
+            return $@"
+            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
+                <h2 style='color: #27ae60;'>Request Accepted</h2>
+                <p>Your request for <strong>{applicationName}</strong> has been accepted and is being processed.</p>
+        
+            <div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;'>
+                <p style='margin: 0;'><strong>Accepted by:</strong> {adminName}</p>
+                <p style='margin: 10px 0 0;'><strong>Next steps:</strong> {nextSteps}</p>
+            </div>
+        
+            {accessDateInfo}
+        
+            <p>You'll receive another notification once your access has been fully provisioned.</p>
+        
+            <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;'>
+                <p style='font-size: 0.9em; color: #7f8c8d;'>
+                    This is an automated message. Please do not reply directly to this email.
+                </p>
+            </div>
+            </div>";
+            }
+        public string GetApprovalEmail(string applicationName, string adminName)
+        {
+            string accessDateInfo = "<p>Your access should now be active.</p>";
+
             return $@"
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
                 <h2 style='color: #27ae60;'>Request Approved</h2>
-                <p>Your request for <strong>{applicationName}</strong> has been approved!</p>
-                <div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;'>
-                    <p style='margin: 0;'><strong>Approved by:</strong> {approverName}</p>
-                </div>
-                <p>Your access should now be active. Please contact IT support if you experience any issues.</p>
-                <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;'>
-                    <p style='font-size: 0.9em; color: #7f8c8d;'>
-                        This is an automated message. Please do not reply directly to this email.
-                    </p>
-                </div>
+                <p>Your request for <strong>{applicationName}</strong> has been approved.</p>
+        
+            <div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;'>
+                <p style='margin: 0;'><strong>Approved by:</strong> {adminName}</p>
+            </div>
+        
+            {accessDateInfo}
+        
+            <p>You're all set u have access now.</p>
+        
+            <div style='margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;'>
+                <p style='font-size: 0.9em; color: #7f8c8d;'>
+                    This is an automated message. Please do not reply directly to this email.
+                </p>
+            </div>
             </div>";
         }
     }

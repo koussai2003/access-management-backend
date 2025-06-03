@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IOK7h0eZ0ut+iTrCIaz6hrmPUfmX82MXX9lxX7CiBBU=",
+  "Hash": "bAYnl3zXoKqtJMH82bK4DhlwteujPRD+htzVHnERTZc=",
   "Source": "AccessManagementAPI",
   "BasePath": "_content/AccessManagementAPI",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\status-inactive-icon-1024x1024-oiyrxtr5.png",
+      "SourceId": "AccessManagementAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\",
+      "BasePath": "_content/AccessManagementAPI",
+      "RelativePath": "uploads/status-inactive-icon-1024x1024-oiyrxtr5.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\status-inactive-icon-1024x1024-oiyrxtr5.png"
     },
     {
       "Identity": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\téléchargement.png",

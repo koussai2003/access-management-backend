@@ -222,7 +222,21 @@ namespace AccessManagementAPI.Controllers
             request.State = "Accepted";
             string emailType = "Accepted";
             string emailSubject = "Request Accepted";
-            string emailBody = $"Your request for {request.ApplicationName} has been Accepted by admin and is being processed";
+            var adminName = await GetUserNameByEmail(adminEmail);
+            string applicationName = request.ApplicationName;
+            DateTime? accessStartDate = DateTime.Now.AddDays(1);
+            string emailBody = _templateService.GetAcceptedEmail(
+                applicationName,
+                adminName,
+                "Your request is now being processed by our team",
+                accessStartDate);
+            await _emailService.SendAcceptedEmail(
+                request.UserEmail,
+                adminEmail,
+                applicationName,
+                adminName,
+                request.Id,
+                accessStartDate);
             await NotificationsController.CreateNotification(_context, 
                 request.UserEmail,
                 "Request Accepted",
@@ -249,9 +263,11 @@ namespace AccessManagementAPI.Controllers
             {
                 return BadRequest(new { message = "Only the admin who accepted the request can approve it" });
             }
+            string applicationName = request.ApplicationName;
             string emailType = "Approved";
             string emailSubject = "Request Approved";
-            string emailBody = $"Your request for {request.ApplicationName} has been approved by admin";
+            var adminName = await GetUserNameByEmail(adminEmail);
+            string emailBody = _templateService.GetApprovalEmail(applicationName, adminName);
             request.State = "Finished";
             request.LockedByAdmin = null;
             request.LockedAt = null;
