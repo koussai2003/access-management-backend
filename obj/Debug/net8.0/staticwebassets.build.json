@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bAYnl3zXoKqtJMH82bK4DhlwteujPRD+htzVHnERTZc=",
+  "Hash": "Fh/1JicxT5Ia9IzMnsD0o2/RyFL/j7RxJdgSrOs8Y44=",
   "Source": "AccessManagementAPI",
   "BasePath": "_content/AccessManagementAPI",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Argania.png"
+    },
+    {
+      "Identity": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\D62jiLiW4AQPV9-.jpg",
+      "SourceId": "AccessManagementAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\",
+      "BasePath": "_content/AccessManagementAPI",
+      "RelativePath": "uploads/D62jiLiW4AQPV9-.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\D62jiLiW4AQPV9-.jpg"
     },
     {
       "Identity": "C:\\Users\\Mega-Pc\\Documents\\KilaniApplication\\AccessManagementAPI\\wwwroot\\uploads\\logo.png",

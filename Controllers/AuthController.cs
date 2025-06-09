@@ -27,9 +27,15 @@ namespace AccessManagementAPI.Controllers
             var user = new User
             {
                 Name = userDto.Name,
+                LastName = userDto.LastName,
                 Email = userDto.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
-                Role = userDto.Role
+                Role = userDto.Role,
+                Fonction = userDto.Fonction,
+                Societe = userDto.Societe,
+                Direction = userDto.Direction,
+                Statut = userDto.Statut,
+                Validateur1 = userDto.Validateur1,
             };
 
             _context.Users.Add(user);
@@ -92,9 +98,15 @@ namespace AccessManagementAPI.Controllers
     public class UserRegisterDTO
     {
         public string Name { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
+        public string Direction { get; set; }
+        public string Fonction { get; set; }
+        public string Societe { get; set; }
+        public string Statut { get; set; }
+        public string Validateur1 { get; set; }
     }
 
     public class UserLoginDTO

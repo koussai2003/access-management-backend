@@ -1,2 +1,15 @@
-GET http://localhost:5235/api/modules/3
-Accept: application/json
+POST http://localhost:5235/api/auth/register
+Content-Type: application/json
+
+{
+  "Name": "Mariem",
+  "LastName": "bj",
+  "Email": "mariem@gmail.com",
+  "Password": "mariem123",
+  "Role": "Admin",
+  "Direction": "Finance",
+  "Fonction": "Direc",
+  "Societe": "kjs",
+  "Validateur1": "iyed@gmail.com",
+  "Statut": "Active"
+}
